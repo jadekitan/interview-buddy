@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { IoIosNotificationsOutline } from "react-icons/io";
+import SessionModal from "@/components/SessionModal";
 
 const stats = [
   {
@@ -86,12 +87,12 @@ const stats = [
 
 const sessions = [
   { title: "Product Manager Interview", rating: "8.5", timestamp: "2h ago" },
-  { title: "Product Manager Interview", rating: "8.5", timestamp: "2h ago" },
+  { title: "Project Manager Interview", rating: "6.5", timestamp: "4 day ago" },
 ];
 
 const Overview = () => {
   return (
-    <VStack w="100%" align="flex-start" gap="20px">
+    <VStack w="100%" align="flex-start" gap="20px" pb="20px">
       <HStack
         bg="white"
         w="100%"
@@ -101,10 +102,10 @@ const Overview = () => {
         roundedBottom="8px"
       >
         <VStack align="flex-start">
-          <Heading color="black">Hi, Mighty huggo 👋</Heading>
+          <Heading color="black">Hi, Moyo 👋</Heading>
           <Text color="black">Ready for today's mock interview?</Text>
         </VStack>
-        <HStack align="center" gap="40px">
+        <HStack align="center" gap="20px">
           <VStack
             w="48px"
             h="48px"
@@ -116,10 +117,20 @@ const Overview = () => {
               <IoIosNotificationsOutline />
             </Icon>
           </VStack>
-          <Avatar.Root shape="full" size="lg">
-            <Avatar.Fallback name="Random User" />
-            <Avatar.Image src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04" />
-          </Avatar.Root>
+          <HStack>
+            <Avatar.Root shape="full" size="lg">
+              <Avatar.Fallback name="Random User" />
+              <Avatar.Image src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04" />
+            </Avatar.Root>
+            <VStack align="flex-start" gap="-1">
+              <Text color="black" fontSize="14px" fontWeight="400">
+                Moyo Oginni
+              </Text>
+              <Text color="black" fontSize="12px" fontWeight="300">
+                0 credit
+              </Text>
+            </VStack>
+          </HStack>
         </HStack>
       </HStack>
       <HStack
@@ -131,24 +142,7 @@ const Overview = () => {
         p="25px"
         rounded="16px"
       >
-        <Icon>
-          <svg
-            width="31"
-            height="31"
-            viewBox="0 0 31 31"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10.6562 22.2813C10.3993 22.2813 10.1529 22.1792 9.97124 21.9975C9.78956 21.8158 9.6875 21.5694 9.6875 21.3125V9.6875C9.68759 9.52244 9.72985 9.36013 9.81028 9.21598C9.89071 9.07184 10.0066 8.95064 10.1471 8.86388C10.2875 8.77712 10.4478 8.72768 10.6127 8.72025C10.7776 8.71282 10.9416 8.74765 11.0893 8.82144L22.7143 14.6339C22.875 14.7145 23.0101 14.8381 23.1045 14.9911C23.199 15.144 23.249 15.3203 23.249 15.5C23.249 15.6798 23.199 15.856 23.1045 16.0089C23.0101 16.1619 22.875 16.2855 22.7143 16.3661L11.0893 22.1786C10.9549 22.2459 10.8066 22.2811 10.6562 22.2813ZM11.625 11.2549V19.7451L20.1151 15.5L11.625 11.2549Z"
-              fill="white"
-            />
-            <path
-              d="M15.5 3.875C17.7992 3.875 20.0468 4.55679 21.9585 5.83417C23.8702 7.11154 25.3602 8.92711 26.2401 11.0513C27.12 13.1755 27.3502 15.5129 26.9016 17.7679C26.4531 20.023 25.3459 22.0943 23.7201 23.7201C22.0943 25.3459 20.023 26.4531 17.7679 26.9016C15.5129 27.3502 13.1755 27.12 11.0513 26.2401C8.92712 25.3602 7.11154 23.8702 5.83417 21.9585C4.5568 20.0468 3.87501 17.7992 3.87501 15.5C3.87501 12.4169 5.09978 9.45999 7.27989 7.27988C9.46 5.09977 12.4169 3.875 15.5 3.875ZM15.5 1.9375C12.8176 1.9375 10.1954 2.73293 7.96508 4.22319C5.73474 5.71346 3.9964 7.83163 2.96989 10.3099C1.94338 12.7881 1.67479 15.515 2.19811 18.1459C2.72142 20.7768 4.01312 23.1934 5.90987 25.0901C7.80662 26.9869 10.2232 28.2786 12.8541 28.8019C15.485 29.3252 18.2119 29.0566 20.6902 28.0301C23.1684 27.0036 25.2865 25.2653 26.7768 23.0349C28.2671 20.8046 29.0625 18.1824 29.0625 15.5C29.0625 11.903 27.6336 8.45333 25.0901 5.90986C22.5467 3.3664 19.097 1.9375 15.5 1.9375Z"
-              fill="white"
-            />
-          </svg>
-        </Icon>
+        <SessionModal />
         <VStack align="flex-start" gap="0">
           <Heading color="white" fontSize="20px" fontWeight="500">
             Start New Interview
@@ -195,10 +189,21 @@ const Overview = () => {
       </HStack>
 
       <VStack w="100%" align="flex-start" gap="20px" overflow="hidden">
-        <Heading color="#1C1C1C" fontSize="24px" fontWeight="500">
-          Recent Session
-        </Heading>
-        <HStack w="100%" align="flex-start">
+        <HStack w="60%" justify="space-between" align="flex-end">
+          <Heading color="#1C1C1C" fontSize="24px" fontWeight="500">
+            Recent Session
+          </Heading>
+          <Text
+            color="black"
+            fontSize="14px"
+            fontWeight="300"
+            textDecoration="underline"
+            cursor="pointer"
+          >
+            View all
+          </Text>
+        </HStack>
+        <HStack w="100%" justify="space-between" align="flex-start">
           <VStack w="60%" align="flex-start" gap="24px">
             {sessions.map((session, index) => (
               <HStack
@@ -244,7 +249,7 @@ const Overview = () => {
 
           <VStack
             bg="#4F46E51A"
-            w="40%"
+            w="35%"
             align="flex-start"
             gap="30px"
             py="20px"

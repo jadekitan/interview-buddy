@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Overview from "./Overview";
+import Session from "./Session";
 import { TbDashboard } from "react-icons/tb";
 import { GiProgression } from "react-icons/gi";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
@@ -18,6 +19,11 @@ const mainMenu = [
     value: "dashboard",
     title: "Dashboard",
     icon: <TbDashboard />,
+  },
+  {
+    value: "session",
+    title: "Sessions",
+    icon: <IoDocumentText />,
   },
   {
     value: "resources",
@@ -43,6 +49,8 @@ const Dashboard = () => {
     switch (value) {
       case "dashboard":
         return <Overview />;
+      case "session":
+        return <Session />;
       default:
         return <Overview />;
     }
@@ -88,7 +96,8 @@ const Dashboard = () => {
       <VStack
         bg="white"
         w="25%"
-        minH="100vh"
+        h="100vh"
+        maxH="120vh"
         justify="start"
         align="center"
         py="25px"
