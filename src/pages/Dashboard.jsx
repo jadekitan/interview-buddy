@@ -5,6 +5,8 @@ import {
   RadioCard,
   Icon,
   Box,
+  Avatar,
+  Text,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Overview from "./Overview";
@@ -13,6 +15,8 @@ import { TbDashboard } from "react-icons/tb";
 import { GiProgression } from "react-icons/gi";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { IoDocumentText } from "react-icons/io5";
+import Resources from "@/pages/Resources";
+import { IoIosNotificationsOutline } from "react-icons/io";
 
 const mainMenu = [
   {
@@ -51,6 +55,8 @@ const Dashboard = () => {
         return <Overview />;
       case "session":
         return <Session />;
+      case "resources":
+        return <Resources />;
       default:
         return <Overview />;
     }
@@ -122,7 +128,49 @@ const Dashboard = () => {
         </VStack>
       </VStack>
       <Box w="75%" h="100%" px="20px">
-        {renderContent()}
+        <VStack w="100%" align="flex-start" gap="20px" pb="20px">
+          <HStack
+            bg="white"
+            w="100%"
+            justify="space-between"
+            py="25px"
+            px="20px"
+            roundedBottom="8px"
+          >
+            <VStack align="flex-start">
+              <Heading color="black">Hi, Moyo 👋</Heading>
+              <Text color="black">Ready for today's mock interview?</Text>
+            </VStack>
+            <HStack align="center" gap="20px">
+              <VStack
+                w="48px"
+                h="48px"
+                justify="center"
+                bg="#E2EFFF"
+                rounded="24px"
+              >
+                <Icon w="24px" h="24px" color="black">
+                  <IoIosNotificationsOutline />
+                </Icon>
+              </VStack>
+              <HStack>
+                <Avatar.Root shape="full" size="lg">
+                  <Avatar.Fallback name="Random User" />
+                  <Avatar.Image src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04" />
+                </Avatar.Root>
+                <VStack align="flex-start" gap="-1">
+                  <Text color="black" fontSize="14px" fontWeight="400">
+                    Moyo Oginni
+                  </Text>
+                  <Text color="black" fontSize="12px" fontWeight="300">
+                    0 credit
+                  </Text>
+                </VStack>
+              </HStack>
+            </HStack>
+          </HStack>
+          {renderContent()}
+        </VStack>
       </Box>
     </HStack>
   );
